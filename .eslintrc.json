@@ -1,3 +1,43 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended",
+    "plugin:redos/recommended",
+    "prettier"
+  ],
+  "plugins": ["unused-imports"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "unused-imports/no-unused-imports": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "pathGroups": [
+          {
+            "pattern": "@/components/**",
+            "group": "internal",
+            "position": "before"
+          }
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "@typescript-eslint/ban-ts-comment": "off", //TypeScriptの@ts-ignore、@ts-nocheck、@ts-checkの使用を許可
+    "@typescript-eslint/no-floating-promises": "error", //Promiseをawaitせずにそのまま使うのをエラーにする
+    "@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports" }], //型はimport typeで表示
+    "import/no-duplicates": "error", //重複するimportをエラーにする
+    "react/jsx-sort-props": "error", //JSXコンポーネントのPropsの順番も自動でソート
+    "@next/next/no-img-element": "off", // Next.jsで<img>要素を使用しても警告を出さないようにする
+    "redos/no-vulnerable": "error" //正規表現での脆弱性を検出した場合にエラー
+  }
 }
