@@ -27,7 +27,8 @@
           }
         ],
         "alphabetize": {
-          "order": "asc"
+          "order": "asc",
+          "caseInsensitive": true
         }
       }
     ],
